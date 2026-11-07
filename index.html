@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility Playground</title>
+    <meta
+      name="description"
+      content="A demo site intentionally containing common WCAG accessibility issues for teaching and testing."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="inner-wrap">
+        <div>
+          <p class="eyebrow">Demo website</p>
+          <h1>Accessibility Playground</h1>
+        </div>
+        <div class="header-actions">
+          <button id="toggleFixes" class="primary-button" type="button">
+            Show fixes
+          </button>
+          <button id="resetDemo" class="secondary-button" type="button">
+            Reset demo
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro panel">
+        <p class="tag">For demo and education only</p>
+        <h2>Built to intentionally break common accessibility patterns</h2>
+        <p>
+          Each section below contains a real-world accessibility problem and its
+          fixed version. Use the toggle to reveal the corrected version and talk
+          through the issue live on camera.
+        </p>
+      </section>
+
+      <section class="demo-grid">
+        <article class="demo-card" data-demo="missing-label">
+          <div class="demo-header">
+            <div>
+              <p class="demo-kicker">Example 1</p>
+              <h3>Missing input label</h3>
+            </div>
+            <button class="demo-toggle" type="button">Show fix</button>
+          </div>
+
+          <div class="bad-example example-panel">
+            <p class="warning-text">Bad example: the input has no label.</p>
+            <input type="email" id="email-demo" placeholder="Enter your email" />
+            <button class="primary-button small" type="button">Submit</button>
+          </div>
+
+          <div class="fix-example example-panel hidden">
+            <p class="success-text">Fixed example: a clear label is connected to the control.</p>
+            <label for="email-fixed">Email address</label>
+            <input type="email" id="email-fixed" />
+            <button class="primary-button small" type="button">Submit</button>
+          </div>
+        </article>
+
+        <article class="demo-card" data-demo="low-contrast">
+          <div class="demo-header">
+            <div>
+              <p class="demo-kicker">Example 2</p>
+              <h3>Low contrast text</h3>
+            </div>
+            <button class="demo-toggle" type="button">Show fix</button>
+          </div>
+
+          <div class="bad-example example-panel">
+            <p class="warning-text">Bad example: the text is too light to read comfortably.</p>
+            <div class="low-contrast-box">
+              This content is hard to read because the contrast is poor.
+            </div>
+          </div>
+
+          <div class="fix-example example-panel hidden">
+            <p class="success-text">Fixed example: the contrast is much stronger and easier to read.</p>
+            <div class="fixed-contrast-box">
+              This content is easy to read because the contrast complies better.
+            </div>
+          </div>
+        </article>
+
+        <article class="demo-card" data-demo="color-only-status">
+          <div class="demo-header">
+            <div>
+              <p class="demo-kicker">Example 3</p>
+              <h3>Color-only status</h3>
+            </div>
+            <button class="demo-toggle" type="button">Show fix</button>
+          </div>
+
+          <div class="bad-example example-panel">
+            <p class="warning-text">Bad example: only color communicates the meaning.</p>
+            <div class="status-row">
+              <span class="status-dot success-dot" aria-label="Success"></span>
+              <span class="status-dot error-dot" aria-label="Error"></span>
+            </div>
+          </div>
+
+          <div class="fix-example example-panel hidden">
+            <p class="success-text">Fixed example: text adds the meaning, not just color.</p>
+            <div class="status-row fixed-status-row">
+              <span class="status-badge success-badge">Online</span>
+              <span class="status-badge error-badge">Offline</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="demo-card" data-demo="click-only">
+          <div class="demo-header">
+            <div>
+              <p class="demo-kicker">Example 4</p>
+              <h3>Click-only interaction</h3>
+            </div>
+            <button class="demo-toggle" type="button">Show fix</button>
+          </div>
+
+          <div class="bad-example example-panel">
+            <p class="warning-text">Bad example: this menu opens only on click and not keyboard input.</p>
+            <div class="fake-menu" tabindex="-1" role="button" aria-label="Open menu">
+              Open menu
+            </div>
+          </div>
+
+          <div class="fix-example example-panel hidden">
+            <p class="success-text">Fixed example: it supports focus and keyboard activation.</p>
+            <button class="menu-button" type="button">Open menu</button>
+          </div>
+        </article>
+
+        <article class="demo-card" data-demo="heading-order">
+          <div class="demo-header">
+            <div>
+              <p class="demo-kicker">Example 5</p>
+              <h3>Broken heading structure</h3>
+            </div>
+            <button class="demo-toggle" type="button">Show fix</button>
+          </div>
+
+          <div class="bad-example example-panel">
+            <p class="warning-text">Bad example: the heading levels are out of order.</p>
+            <h4>Why this matters</h4>
+            <h1>Accessibility Playground</h1>
+            <h3>Page summary</h3>
+          </div>
+
+          <div class="fix-example example-panel hidden">
+            <p class="success-text">Fixed example: heading order follows a logical structure.</p>
+            <h1>Accessibility Playground</h1>
+            <h2>Why this matters</h2>
+            <h3>Page summary</h3>
+          </div>
+        </article>
+
+        <article class="demo-card" data-demo="focus-removal">
+          <div class="demo-header">
+            <div>
+              <p class="demo-kicker">Example 6</p>
+              <h3>Invisible focus</h3>
+            </div>
+            <button class="demo-toggle" type="button">Show fix</button>
+          </div>
+
+          <div class="bad-example example-panel">
+            <p class="warning-text">Bad example: the focus outline was removed.</p>
+            <button class="ghost-button" type="button">Focus me</button>
+          </div>
+
+          <div class="fix-example example-panel hidden">
+            <p class="success-text">Fixed example: keyboard focus is visible and obvious.</p>
+            <button class="good-focus-button" type="button">Focus me</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel references">
+        <h2>Common WCAG criteria covered</h2>
+        <ul>
+          <li>1.1.1 Non-text Content</li>
+          <li>1.3.1 Info and Relationships</li>
+          <li>1.4.1 Use of Color</li>
+          <li>1.4.3 Contrast (Minimum)</li>
+          <li>2.1.1 Keyboard</li>
+          <li>2.4.7 Focus Visible</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

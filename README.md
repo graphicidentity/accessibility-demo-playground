@@ -1,38 +1,43 @@
-# Accessibility Demo Playground
+# Access Lab — Accessibility Playground
 
-This repository is a simple static website designed to teach common WCAG accessibility issues in a visual, easy-to-demo way. The page intentionally includes accessibility problems so you can present them live on camera, then reveal the corrected version with a single click.
+A polished, recording-friendly static site for teaching common accessibility barriers and demonstrating practical fixes. **This site intentionally includes inaccessible examples.** Keep the demo-only warning in place, don't collect personal data through the examples, and don't copy broken patterns into production.
 
-## What is included
+## What's in the playground
 
-- Missing form labels
-- Low contrast text
-- Color-only status communication
-- Click-only interactions
-- Broken heading order
-- Invisible focus styles
-- A fixed version for each example
+Each demo uses a before → impact → after narrative:
 
-## Local preview
+1. A logo image without an `alt` attribute, followed by an informative alternative-text example.
+2. A form control without a visible label.
+3. Low-contrast text.
+4. A safe, escapable keyboard focus-loop simulation, followed by a native dialog example.
+5. A visual-only status update compared with a polite live region.
+6. Status conveyed by color alone.
 
-Because this is a static site, you can preview it by opening `index.html` directly in a browser or by serving it locally:
+Use a card's **Show the fix** control to switch its example, **Show all fixes** to reveal all fixes, and **Reset demos** to return to the broken examples. The focus-loop simulation is intentionally escapable using Escape and the on-screen end button; it demonstrates the behavior without leaving a visitor trapped.
+
+The header brand mark intentionally has no `alt` attribute to support the requested logo demo. Its example's fixed state includes alternative text. In production, provide appropriate text alternatives for informative images, or `alt=""` for decorative images.
+
+## Preview locally
+
+Open `index.html`, or serve the project from its root directory:
 
 ```bash
-cd accessibility-demo-playground
 python -m http.server 8000
 ```
 
-Then open:
+Then visit <http://localhost:8000>.
 
-```text
-http://localhost:8000
-```
+## Publish with GitHub Pages
 
-## Demo usage
+A workflow in `.github/workflows/pages.yml` builds and deploys this static site whenever changes are pushed to `main`, and can also be started manually.
 
-- Use the top-right toggle to reveal the accessible versions.
-- Use the `Reset demo` button to restore the intentionally broken examples.
-- Each example is meant to be educational and should be clearly labeled as a demo-only playground.
+1. Open the repository's **Settings → Pages**.
+2. Under **Build and deployment**, select **GitHub Actions** as the source.
+3. Push to `main` or run **Deploy to GitHub Pages** from the Actions tab.
+4. After the deployment workflow succeeds, Pages will show the published URL (usually `https://graphicidentity.github.io/accessibility-demo-playground/`).
 
-## Notes
+The first-time Pages source selection is a repository setting and must be confirmed by a repository administrator. The workflow uses the GitHub Pages deployment actions and repository `pages: write` / `id-token: write` permissions.
 
-This project is intentionally not production-ready, because the goal is to showcase common accessibility failures in a controlled way.
+## Accessibility and WCAG notes
+
+The criterion references are learning pointers, not a claim that each short example fully captures a success criterion or that this site is an audit. WCAG conformance depends on the full experience and context. Screen reader behavior varies by browser and assistive technology; test with real users and tools. See the [W3C WCAG 2.2 Understanding documents](https://www.w3.org/WAI/WCAG22/Understanding/).
